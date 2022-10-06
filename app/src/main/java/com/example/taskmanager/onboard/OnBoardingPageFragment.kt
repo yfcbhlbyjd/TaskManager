@@ -8,22 +8,20 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
-import com.example.taskmanager.databinding.FragmentOnBoardingBinding
-import com.example.taskmanager.databinding.FragmentOnBoardingPageBinding
+import com.example.taskmanager.databinding.ItemOnBoardingPageBinding
 import com.example.taskmanager.loadImage
-import me.relex.circleindicator.CircleIndicator3
 
 
 class OnBoardingPageFragment : Fragment() {
-    private lateinit var binding: FragmentOnBoardingPageBinding
-    private lateinit var bindingForCircleIndicator: FragmentOnBoardingBinding
+    private lateinit var binding: ItemOnBoardingPageBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentOnBoardingPageBinding.inflate(inflater, container, false)
+        binding = ItemOnBoardingPageBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -34,11 +32,9 @@ class OnBoardingPageFragment : Fragment() {
             val data= it.getSerializable(KEY_FOR_BOARD) as OnBoard
             binding.tvTitle.text = data.title
             binding.tvDesc.text = data.description
-            data.image?.let { it1 -> binding.imagePager.loadImage(it1) }
+            data.animation?.let { it1 -> binding.imagePager.loadImage(it1) }
             binding.btnStart.isVisible = data.isLast == true
             binding.tvSkip.isVisible = data.isLast == false
-            val indicator: CircleIndicator3 = bindingForCircleIndicator.circleIndicator
-            indicator.setViewPager(bindingForCircleIndicator.onBoarding)
 
         }
        binding.btnStart.setOnClickListener {

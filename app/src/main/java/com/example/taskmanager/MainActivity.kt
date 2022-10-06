@@ -16,6 +16,8 @@ import com.example.taskmanager.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var preference: Preference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        navController.navigate(R.id.onBoardingFragment)
+
+        preference = Preference(this);
+        if (!preference.isBoardShown())
+            navController.navigate(R.id.boardFragment);
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
@@ -40,22 +46,28 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener(object :
-            NavController.OnDestinationChangedListener {
-            override fun onDestinationChanged(
-                controller: NavController,
-                destination: NavDestination,
-                arguments: Bundle?
-            ) {
-                if (destination.id == R.id.onBoardingFragment) {
-                    navView.visibility = View.GONE
-                    supportActionBar?.hide()
-                } else {
-                    navView.visibility = View.VISIBLE
-                    supportActionBar?.show()
-                }
-            }
-        }
+        preference = Preference(this);
+        if (!preference.isBoardShown())
+            navController.navigate(R.id.boardFragment);
+    }
+    navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        val fragment = arrayListOf(
+            R.id.navigation_home,
+            R.id.navigation_dashboard,
+            R.id.navigation_notifications,
+            R.id.taskFragment,
+            R.id.profileFragment
         )
+        if (fragment.contains(destination.id)) {
+            navView.visibility = View.VISIBLE
+        } else {
+            navView.visibility = View.GONE
+        }
+
+        if (destination.id == R.id.boardFragment) {
+            supportActionBar?.hide()
+        } else {
+            supportActionBar?.show()
+        }
     }
 }
