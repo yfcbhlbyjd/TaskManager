@@ -1,4 +1,4 @@
-package com.example.taskmanager.onboard
+package com.example.taskmanager.ui.onboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.example.taskmanager.R
 import com.example.taskmanager.data.Preference
 import com.example.taskmanager.databinding.FragmentOnBoardingBinding
-import com.example.taskmanager.onboard.adapter.OnBoardAdapter
+import com.example.taskmanager.ui.onboard.adapter.OnBoardAdapter
 import me.relex.circleindicator.CircleIndicator3
 
 class OnBoardingFragment : Fragment() {
@@ -26,25 +27,25 @@ class OnBoardingFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val preference = Preference(requireContext())
-        preference.showBoarding()
+        val adapter = OnBoardAdapter(){
+            Preference(requireContext()).showBoarding()
+            if (auth.currentUser != null) {
+                findNavController().navigateUp()
+            } else {
+                findNavController().navigate(R.id.authFragment)
+            }
 
-//        val adapter = OnBoardAdapter(){
-//            Preference(requireContext().saveBoardState())
-//            findNavController().navigateUp()
-////        }
-//        binding.onBoarding.adapter = adapter
+        }
+        binding.onBoarding.adapter = adapter
 
         val pagerSnapHelper = PagerSnapHelper()
-        pagerSnapHelper.attachRecyclerView(binding.onBoarding)
-
-        val indicator: CircleIndicator3 = binding.circleIndicator
-        indicator.setViewPager(binding.onBoarding)
+        pagerSnapHelper.attachToRecyclerView(binding.onBoarding)
 
         binding.circleIndicator.attachToRecyclerView(binding.onBoarding, pagerSnapHelper)
-        adapter.registerDataSetObserver(binding.indicator.adapterDataObserver)
+        adapter.registerAdapterDataObserver(binding.circleIndicator.adapterDataObserver)
 
     }
 

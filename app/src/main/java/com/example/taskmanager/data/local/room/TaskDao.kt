@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.taskmanager.task.Task
+import com.example.taskmanager.ui.task.Task
 
 @Dao
 interface TaskDao {

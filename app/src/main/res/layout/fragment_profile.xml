@@ -42,4 +42,34 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/teal_700"
+        android:textColorHint="@color/teal_700"
+        app:hintTextColor="@color/teal_700"
+        android:layout_marginHorizontal="52dp"
+        android:layout_marginBottom="52dp"
+        android:layout_gravity="center|bottom"
+        app:layout_constraintBottom_toTopOf="@+id/profile_text"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profile_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your age"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/common_full_open_on_phone"
+        android:padding="16dp"
+        />
+
 </FrameLayout>

@@ -18,6 +18,6 @@ class App: Application() {
 
 
     companion object{
-        private lateinit var db: TaskDatabase
+        lateinit var db: TaskDatabase
     }
 }

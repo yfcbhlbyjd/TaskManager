@@ -1,4 +1,4 @@
-package com.example.taskmanager.onboard
+package com.example.taskmanager.ui.onboard
 
 import java.io.Serializable
 

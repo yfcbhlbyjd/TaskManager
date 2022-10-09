@@ -29,4 +29,11 @@ class Preference(context: Context) {
     fun getImageView(): String? {
         return preference.getString("image", "").toString()
     }
+
+    fun setProfileAge(age: String) {
+        preference.edit().putString("age", age).apply()
+    }
+
+    fun getProfileAge(): String = preference.getString("age", "").toString()
+
 }
