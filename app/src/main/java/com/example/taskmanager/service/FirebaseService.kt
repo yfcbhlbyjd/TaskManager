@@ -7,7 +7,8 @@ import androidx.core.app.NotificationCompat
 import com.example.taskmanager.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.NotificationParams
-import kotlinx.coroutines.NonCancellable.message
+
+
 
 class FirebaseService : FirebaseMessagingService() {
 
@@ -21,13 +22,15 @@ class FirebaseService : FirebaseMessagingService() {
 
     private fun showNotification(massage: Any) {
         val notificationBuilder = NotificationCompat.Builder(this, "Task_channelId")
-        notificationBuilder.setSnallIcon(R.drawable.ic_notifications_black_24dp)
+        notificationBuilder.setSmallIcon(R.drawable.ic_notifications_black_24dp)
         notificationBuilder.setContentTitle(massage.notification?.title)
         notificationBuilder.setContentText(massage.notification?.body)
         notificationBuilder.setAutoCancel(true)
+
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        val channel = NotificationChannel(
+
+        val channel = NotificationChannel (
             "Task_channelId",
             "Channel human readable title",
             NotificationManager.IMPORTANCE_DEFAULT
@@ -35,6 +38,4 @@ class FirebaseService : FirebaseMessagingService() {
         notificationManager.createNotificationChannel(channel)
         notificationManager.notify(1, notificationBuilder.build())
     }
-
-
 }

@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener{
-//            Log.e("ololo", "onCreate: " + it.result)
-//        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener{
+            Log.e("ololo", "onCreate: " + it.result)
+        }
 
 
         val navView: BottomNavigationView = binding.navView
