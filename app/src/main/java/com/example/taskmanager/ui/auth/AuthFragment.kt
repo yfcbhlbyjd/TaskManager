@@ -16,15 +16,13 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.auth.PhoneAuthProvider.PHONE_SIGN_IN_METHOD
-import com.google.firebase.auth.PhoneAuthProvider.verifyPhoneNumber
 import java.util.concurrent.TimeUnit
 
 
 class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
     private var verificationId: String? = null
-    private val auth = FirebaseAuth.getInstance()
+    val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +58,7 @@ class AuthFragment : Fragment() {
         val options: PhoneAuthOptions = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber("+996${binding.etPhoneNumber.text.toString()}")
             .setTimeout(60L, TimeUnit.SECONDS)
-            .setCallbacks(object :  PhoneAuthProvider.OnVerificationStateChangedCallbacks {
+            .setCallbacks(object :  PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                 override fun onVerificationCompleted(p0: PhoneAuthCredential) {
                 }
 

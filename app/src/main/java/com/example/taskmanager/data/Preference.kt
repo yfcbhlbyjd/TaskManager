@@ -10,7 +10,7 @@ class Preference(context: Context) {
         preference.edit().putBoolean("isBoardShown", false).apply()
     }
 
-    fun isBoardShown(): Boolean {
+    fun isBoardShown(): Boolean? {
         return preference.getBoolean("isBoardShown", true)
     }
 
@@ -22,18 +22,18 @@ class Preference(context: Context) {
         return preference.getString("text", "").toString()
     }
 
-    fun setImageView(image: String?) {
-        preference.edit().putString("image", image).apply()
+    fun setImageView(url: String?) {
+        preference.edit().putString("image", url).apply()
     }
 
     fun getImageView(): String? {
         return preference.getString("image", "").toString()
     }
 
-    fun setProfileAge(age: String) {
+    fun setProfileAge(age: String?) {
         preference.edit().putString("age", age).apply()
     }
 
-    fun getProfileAge(): String = preference.getString("age", "").toString()
+    fun getProfileAge(): String? = preference.getString("age", "").toString()
 
 }

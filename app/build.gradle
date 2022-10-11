@@ -70,7 +70,7 @@ dependencies {
     // lottie library
     implementation 'com.airbnb.android:lottie:5.2.0'
 
-    // firebise library
+    // firebase library
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
 
 }

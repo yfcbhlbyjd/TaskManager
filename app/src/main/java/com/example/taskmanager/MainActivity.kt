@@ -1,6 +1,7 @@
 package com.example.taskmanager
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.NonNull
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -10,13 +11,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.taskmanager.data.Preference
 import com.example.taskmanager.databinding.ActivityMainBinding
+import com.example.taskmanager.ui.task.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var auth = FirebaseAuth.getInstance()
+    var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener{
             Log.e("ololo", "onCreate: " + it.result)
         }
+
 
 
         val navView: BottomNavigationView = binding.navView
