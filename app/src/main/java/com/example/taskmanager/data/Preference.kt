@@ -10,27 +10,27 @@ class Preference(context: Context) {
         preference.edit().putBoolean("isBoardShown", false).apply()
     }
 
-    fun isBoardShown(): Boolean? {
+    fun isBoardShown(): Boolean {
         return preference.getBoolean("isBoardShown", true)
     }
 
-    fun setEditText(name: String?) {
+    fun setEditText(name: String) {
         preference.edit().putString("text", name).apply()
     }
 
-    fun getEditText(): String? {
+    fun getEditText(): String {
         return preference.getString("text", "").toString()
     }
 
-    fun setImageView(url: String?) {
+    fun setImageView(url: String) {
         preference.edit().putString("image", url).apply()
     }
 
-    fun getImageView(): String? {
+    fun getImageView(): String {
         return preference.getString("image", "").toString()
     }
 
-    fun setProfileAge(age: String?) {
+    fun setProfileAge(age: String) {
         preference.edit().putString("age", age).apply()
     }
 
